@@ -1,31 +1,23 @@
-<cffunction  name="display_message" hint="birthdate calculator">
-<cfset parent_dob=#arguments.parent_dob# >
-<cfset child_dob=#arguments.child_dob# >
-
-
-<cfset birthDate=#parent_dob#>
-<cfset cbirthDate=#child_dob#>
-<cfoutput>
-Mother Age - 
-#dateDiff("yyyy", birthDate, now())#
-</cfoutput></br>
-<cfoutput>
-Son Age - 
-#dateDiff("yyyy", cbirthDate, now())#
-</cfoutput></br>
-Mother Delivery age-
-<cfoutput>
-#dateDiff("yyyy", "#parent_dob#", "#child_dob#")#
-</cfoutput> </br>
-<cfset mdate= DateTimeFormat(parent_dob,"dd/mm/2022")>
-<cfset cdate= DateTimeFormat(child_dob,"dd/mm/2022")>
-<cfoutput>
-Days remaining for Mother Birthday
-#dateDiff("d", mdate, now())#
-</cfoutput></br>
-<cfoutput>
-Days remaining for Son Birthday
-#dateDiff("d", cdate, now())#
-</cfoutput></br>
-
+<cffunction name="dateFunc" access="remote" returnType="array">
+        <cfargument  name="child_dob">
+        <cfargument  name="parent_dob">
+        <cfset current_year=DateFormat(Now(),"yyyy")>
+        <cfset user_year=DateFormat(child_dob,"yyyy")>
+        <cfset user_month=DateFormat(child_dob,"mm")>
+        <cfset user_day=DateFormat(child_dob,"dd")>
+        <cfset mom_year=DateFormat(parent_dob,"yyyy")>
+        <cfset mom_month=DateFormat(parent_dob,"mm")>
+        <cfset mom_day=DateFormat(parent_dob,"dd")>
+        <cfset user_age=dateDiff("d", user_year, current_year)>
+        <cfset deliver_age=dateDiff("d", mom_year, user_year)>
+        <cfset arrayN=arrayNew(1)>        
+        <cfset user_bdy=CreateDate(current_year,user_month,user_day)>
+        <cfset mom_bdy=CreateDate(current_year,mom_month,mom_day)>
+        <cfset user_count=dateDiff("d",  now(), user_bdy)>
+        <cfset mom_count=dateDiff("d",  now(), mom_bdy)>
+        <cfset arrayAppend(arrayN,user_age)>
+        <cfset arrayAppend(arrayN,deliver_age)>
+        <cfset arrayAppend(arrayN,user_count)>
+        <cfset arrayAppend(arrayN,mom_count)>       
+        <cfreturn arrayN>
 </cffunction>
