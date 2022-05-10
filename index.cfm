@@ -36,11 +36,11 @@
                                     <cfoutput>
                                         <h5>User's Age : #dob_data[1]# </h5>
                                         <h5> Delivery Age of mother : #dob_data[2]#</h5>
-                                        <h5>Days left for User Birthday : #dob_data[3]#</h5>
-                                        <h5>Days left for Mother's Birthday : #dob_data[4]#</h5>
+                                        <h5>Days left for Mother Birthday : #dob_data[3]#</h5>
+                                        <h5>Days left for son's Birthday : #dob_data[4]#</h5>
                                     </cfoutput>
-                </cfif>
+                </cfif>        
+            </div>
         </section>
-        </div>
     </body>
 </html>
