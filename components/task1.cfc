@@ -1,4 +1,4 @@
-<cffunction name="dateFunc" access="remote" returnType="array">
+<cffunction name="dateFunc" access="public" returnType="array" output="true">
         <cfargument  name="child_dob" type="string" required="true">
         <cfargument  name="parent_dob" type="string" required="true">
         <cfset local.current_year=DateFormat(Now(),"yyyy")>
@@ -9,15 +9,15 @@
         <cfset local.mom_month=DateFormat(parent_dob,"mm")>
         <cfset local.mom_day=DateFormat(parent_dob,"dd")>
         <cfset local.user_age=dateDiff("d", user_year, current_year)>
-        <cfset deliver_age=dateDiff("d", mom_year, user_year)>
-        <cfset arrayN=arrayNew(1)>        
-        <cfset user_bdy=CreateDate(current_year,user_month,user_day)>
-        <cfset mom_bdy=CreateDate(current_year,mom_month,mom_day)>
-        <cfset user_count=dateDiff("d",  now(), user_bdy)>
-        <cfset mom_count=dateDiff("d",  now(), mom_bdy)>
-        <cfset arrayAppend(arrayN,user_age)>
-        <cfset arrayAppend(arrayN,deliver_age)>
-        <cfset arrayAppend(arrayN,user_count)>
-        <cfset arrayAppend(arrayN,mom_count)>       
-        <cfreturn arrayN>
+        <cfset local.deliver_age=dateDiff("d", mom_year, user_year)>
+        <cfset local.arrayN=arrayNew(1)>        
+        <cfset local.user_bdy=CreateDate(current_year,local.user_month,local.user_day)>
+        <cfset local.mom_bdy=CreateDate(current_year,local.mom_month,local.mom_day)>
+        <cfset local.user_count=dateDiff("d",  now(), local.user_bdy)>
+        <cfset local.mom_count=dateDiff("d",  now(), local.mom_bdy)>
+        <cfset arrayAppend(arrayN,local.user_age)>
+        <cfset arrayAppend(arrayN,local.deliver_age)>
+        <cfset arrayAppend(arrayN,local.user_count)>
+        <cfset arrayAppend(arrayN,local.mom_count)>       
+        <cfreturn local.arrayN>
 </cffunction>
